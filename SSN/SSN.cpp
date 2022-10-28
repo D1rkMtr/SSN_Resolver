@@ -89,5 +89,19 @@ int main(int argc, char** argv) {
 	WORD syscallIns = (WORD)*(INT_PTR*)((INT_PTR)addr + 0x12);
 	printf("[+] syscall instruction [ %2x ]	 at 0x%p\n", syscallIns, ((INT_PTR)addr + 0x12));
 	
+	// to use it in a Dynamic Direct syscall
+	BYTE high = *((PBYTE)addr + 5 );
+	BYTE low = *((PBYTE)addr + 4 );
+	WORD syscall = (high << 8) | low;
+	/* GetSyscall(syscall);
+	 NTSTATUS Sysstatus = sysNtCreateFile(&fileHandle, FILE_GENERIC_WRITE, &oa, &osb, 0, FILE_ATTRIBUTE_NORMAL, FILE_SHARE_WRITE,
+		FILE_OVERWRITE_IF, FILE_SYNCHRONOUS_IO_NONALERT, NULL, 0);
+
+	if (!NT_SUCCESS(Sysstatus)) {
+		printf("[!] Failed in sysNtCreateFile (%u)\n", GetLastError());
+		return -1;
+	}
+	*/
+	
 	return 0;
 }
