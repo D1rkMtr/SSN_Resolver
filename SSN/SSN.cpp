@@ -51,7 +51,7 @@ static HMODULE getModule(DWORD myHash) {
 		Mdl = (LDR_MODULE*)Mdl->e[0].Flink;
 		if (Mdl->base != NULL) {
 
-			if (calcHashModule(Mdl) == myHash) { // kernel32.dll hash
+			if (calcHashModule(Mdl) == myHash) { 
 				break;
 			}
 		}
