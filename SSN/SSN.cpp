@@ -86,8 +86,8 @@ int main(int argc, char** argv) {
 	LPVOID addr = getAPIAddr(mod, atoi(argv[1]));	// argv[1] : Hash of the NT API
 	WORD SSN = (WORD)*(INT_PTR*)((INT_PTR)addr + 0x4);
 	printf("[+] SSN at 0x%p : %2x\n", ((INT_PTR)addr + 0x4), SSN);
-	INT_PTR syscallIns = *(INT_PTR*)((INT_PTR)addr + 0x12);
-	printf("[+] syscall instruction [ %2x ]	 at 0x%p\n", (WORD)syscallIns, ((INT_PTR)addr + 0x12));
+	WORD syscallIns = (WORD)*(INT_PTR*)((INT_PTR)addr + 0x12);
+	printf("[+] syscall instruction [ %2x ]	 at 0x%p\n", syscallIns, ((INT_PTR)addr + 0x12));
 	
 	return 0;
 }
